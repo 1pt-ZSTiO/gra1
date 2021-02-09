@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+    margin: auto;
+}
+#page{
+    padding: auto;
+    width: 960px;
+}
+aside{
+    float: left;
+    width: 160px;
+    min-height: 600px;
+    background-color: red;
+}
+main{
+    margin-left: 20px;
+    float: left;
+    width: 760px;
+    min-height: 600px;
+    background-color: blue;
+}
