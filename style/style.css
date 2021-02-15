@@ -21,13 +21,15 @@ nav{
     width: 290px;
     height: 50%;
     background-color: #242726;
-    border-bottom: 1px solid #efefef;
+    border-bottom: 5px solid #efefef;
+    border-right: 5px solid #efefef;
     flex: auto;
 }
 #tasks-list{
     width: 290px;
     height: 50%;
     background-color: #242726;
+    border-right: 5px solid #efefef;
 }
 main{
     flex-direction: column;
