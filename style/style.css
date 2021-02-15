@@ -6,25 +6,37 @@ body{
 }
 #page{
     display: flex;
-    width: 1000px;
-    min-height: 1000px;
+    width: 1200px;
+    height: 100vh;
     background-color: #505050;
     margin: auto;
     padding: auto;
 }
 aside{
-    width: 340px;
-    height: 1000px;
+    width: 290px;
+    height: 100vh;
     background-color: #343434;
+}
+nav{
+    width: 290px;
+    height: 50%;
+    background-color: #242726;
+    border-bottom: 1px solid #efefef;
+    flex: auto;
+}
+#tasks-list{
+    width: 290px;
+    height: 50%;
+    background-color: #242726;
 }
 main{
     flex-direction: column;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 960px;
-    height: 1000px;
-    background-color: #444444;
+    width: 910px;
+    height: 100vh;
+    background-color: #2e3233;
 }
 #button{
     height: 100px;
