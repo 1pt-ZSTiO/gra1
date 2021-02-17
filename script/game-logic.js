@@ -1,10 +1,11 @@
-import {Project} from "./projects.js";
+import {Project, project_list} from "./projects.js";
+import {refreshProjectList} from "./display.js";
 
 let game_end = false
 let clicks = 0;
 export var data = { 
     project_progress : 0,
-    current_project : new Project(1000, 100, "TEST"),
+    current_project : new Project(0, 2, "TEST"),
     money : 0,
     auto_clicks : 0,
     click_multiplier : 1,    
@@ -13,11 +14,17 @@ export var data = {
 
 //Dodatkowe klikanie (pracownicy)
 export function autoClicker(){
-    clicks += data.auto_clicks;
+    if(!data.current_project)
+        return;
+
+    clicks += data.auto_clicks * data.click_multiplier;
     checkProgress();
 }
 //Obsługa kliknięcia gracza
 export function onClick() {
+    if(!data.current_project)
+        return;
+
     clicks += data.click_multiplier;
     checkProgress();//
 }
@@ -26,15 +33,19 @@ function checkProgress(){
     if(!data.current_project)
         return;
 
+
     data.project_progress = Math.round(clicks / data.current_project.effort * 100);
 
     if(data.project_progress >= 100){
         data.money += data.current_project.reward;
 
         clicks = 0;
+        
         data.current_project = undefined;
         data.project_progress = 0;
+        
     }
+    console.log(`progress ${data.project_progress}`);
 }
 
 export function saveGame(){

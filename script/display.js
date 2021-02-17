@@ -1,18 +1,36 @@
 import * as GameLogic from "./game-logic.js";
-import {Project} from "./projects.js";
+import {Project,project_list} from "./projects.js";
 
-export function addAvaliableProject(project){   
+function addAvaliableProject(project) {   
     const projectElement = document.createElement("div");
     projectElement.setAttribute('class','project');
-    projectElement.innerHTML = `
+    projectElement.innerHTML = `        
         <h2>${project.name}</h2>
         <p>
-            Reward: ${project.reward} Clicks: ${project.effort}
+            Reward: ${project.reward} Effort: ~${Math.round(project.effort/100)*100} clicks
         </p>
     `;
+
+    projectElement.onclick = function(){
+        if(GameLogic.data.current_project)
+            return;
+
+        GameLogic.data.current_project = project;
+
+        let compare = GameLogic.data.current_project;
+        let index = project_list.findIndex((ele)=>{return (ele.effort == compare.effort && compare.name == ele.name)});
+        project_list.splice(index,1);     
+
+        refreshProjectList();        
+    };
 
     document.querySelector("#tasks-list").appendChild(projectElement);
 }
 
-addAvaliableProject(new Project(69,420,"Projekt1"));
-addAvaliableProject(new Project(200,1000,"Projekt2"));
+export function refreshProjectList() {
+    document.querySelector("#tasks-list").innerHTML = "";
+
+    project_list.forEach(project => {
+        addAvaliableProject(project);
+    });
+}
